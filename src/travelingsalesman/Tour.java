@@ -2,6 +2,7 @@ package travelingsalesman;
 
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -48,6 +49,21 @@ public void setTotalDistance(double totalDistancePassed)
     this.totalDistance = totalDistancePassed;
 }
 
+public ArrayList<City> getCurrentTour()
+{
+    return currentTour;
+}        
+
+public void generateRandomTour()
+{
+    Random rand = new Random();
+    for (int i = 0; i < 5; i++)
+    {    
+    currentTour.add(new City(rand.nextInt(500),rand.nextInt(500)));
+    } 
+}        
+    
 
 
-}
+
+} // end class
