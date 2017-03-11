@@ -13,17 +13,27 @@ import javax.swing.JFrame;
  */
 public class GUI 
 {
-   
+    JFrame mainWindow = new JFrame();     
     
     public static void main(String args[])
-    {
-     JFrame mainWindow = new JFrame();   
-     mainWindow.setSize(500,500);
-     mainWindow.setLayout(null);
-     mainWindow.setTitle("Traveling Salesman");
+    {  
     }
     
-    
+    public void show()
+    {
+        mainWindow.setSize(500,500);
+        mainWindow.setLayout(null);
+        mainWindow.setTitle("Traveling Salesman");
+        mainWindow.setVisible(true);
+    }
    
-
-}
+    public JFrame getMainWindow()
+    {
+        return mainWindow;
+    }
+            
+            
+            
+            
+            
+ }

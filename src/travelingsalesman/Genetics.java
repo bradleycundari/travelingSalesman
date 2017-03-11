@@ -9,6 +9,7 @@ package travelingsalesman;
  *
  * @author Brad
  */
-public class Genetics {
+public class Genetics 
+{
     
 }
