@@ -2,8 +2,6 @@ package travelingsalesman;
 
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import travelingsalesman.City;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -37,8 +35,7 @@ public class Tour
    } 
    //this is the final comparison of the last city with the first city
    totalDistance = totalDistance + currentTour.get(currentTour.size()).distanceBetweenCities(currentTour.get(1));
- 
-   setFitness(totalDistance);
+   setTotalDistance(totalDistance);
  }   
 
 public void setFitness(double fitnessPassed)
