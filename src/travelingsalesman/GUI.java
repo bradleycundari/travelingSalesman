@@ -32,12 +32,12 @@ public class GUI
         return mainWindow;
     }
             
-    public void drawRoute(Tour tourPassed)        
+    public void drawRoute(Route tourPassed)        
     {
         
     }        
             
-    public void drawCities(Tour tourPassed) 
+    public void drawCities(Route tourPassed) 
     {
         
     }

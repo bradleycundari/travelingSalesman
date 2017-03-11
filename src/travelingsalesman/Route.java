@@ -14,28 +14,28 @@ import java.util.Random;
  *
  * @author Brad
  */
-public class Tour 
+public class Route 
 {
-  ArrayList<City> currentTour;  
+  ArrayList<City> currentRoute;  
   private int numCities;
   private double fitness;
   private double totalDistance;
     
  public void addCity(City cityPassed)
  {
-   currentTour.add(cityPassed);
+   currentRoute.add(cityPassed);
  }
     
- public void calculateTotalDistance(Tour this)
+ public void calculateTotalDistance(Route this)
  {  
    double totalDistance = 0;  
-   for (int i = 0; i < currentTour.size(); i++)
+   for (int i = 0; i < currentRoute.size(); i++)
    {
-      //Gets the current element of currentTour and compares it with the next element. Skips the final comparison.
-      totalDistance = totalDistance + currentTour.get(i).distanceBetweenCities(currentTour.get(i+1));
+      //Gets the current element of currentRoute and compares it with the next element. Skips the final comparison.
+      totalDistance = totalDistance + currentRoute.get(i).distanceBetweenCities(currentRoute.get(i+1));
    } 
    //this is the final comparison of the last city with the first city
-   totalDistance = totalDistance + currentTour.get(currentTour.size()).distanceBetweenCities(currentTour.get(1));
+   totalDistance = totalDistance + currentRoute.get(currentRoute.size()).distanceBetweenCities(currentRoute.get(1));
    setTotalDistance(totalDistance);
  }   
 
@@ -49,17 +49,17 @@ public void setTotalDistance(double totalDistancePassed)
     this.totalDistance = totalDistancePassed;
 }
 
-public ArrayList<City> getCurrentTour()
+public ArrayList<City> getCurrentRoute()
 {
-    return currentTour;
+    return currentRoute;
 }        
 
-public void generateRandomTour()
+public void generateRandomRoute()
 {
     Random rand = new Random();
     for (int i = 0; i < 5; i++)
     {    
-    currentTour.add(new City(rand.nextInt(500),rand.nextInt(500)));
+    currentRoute.add(new City(rand.nextInt(500),rand.nextInt(500)));
     } 
 }        
     
