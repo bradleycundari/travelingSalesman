@@ -44,12 +44,13 @@ public int getY()
 
 public double distanceBetweenCities (City this, City cityPassed2)
 {        
+   //Good ol' Pythagora helping us out
    int xDistance = Math.abs(this.getX() - cityPassed2.getX());
    int yDistance = Math.abs(this.getY() - cityPassed2.getY());
    return Math.sqrt(Math.pow(xDistance,2)+Math.pow(yDistance,2));
 }    
     
-    
+   
     
     
     
