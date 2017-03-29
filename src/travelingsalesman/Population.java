@@ -18,10 +18,35 @@ public class Population
 
     
     
+    public void createPopulation(ArrayList<City> cityMapPassed, int size)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            Route a = new Route();
+            a.createRoute(cityMapPassed);
+            currentPopulation.add(a);
+        }    
+        
+    }
+    
+    public void setTotalDistances()
+    {
+        for (Route i: currentPopulation)
+        {
+            i.calculateTotalDistance();
+        }
+    }
     
     
     
     
+   public void display()
+    {
+        for (Route i: currentPopulation)
+        {
+           System.out.print(i.getTotalDistance());
+        }
+    }
     
     
     public int getPopulationSize(Population this)

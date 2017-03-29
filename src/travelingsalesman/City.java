@@ -50,7 +50,11 @@ public double distanceBetweenCities (City this, City cityPassed2)
    return Math.sqrt(Math.pow(xDistance,2)+Math.pow(yDistance,2));
 }    
     
-   
+@Override
+public String toString()
+{
+   return "Coordinates: (" + this.x + "," + this.y + ")"; 
+}
     
     
     

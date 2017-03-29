@@ -10,6 +10,14 @@ package travelingsalesman;
  * @author Brad
  */
 public class Genetics 
-{
+{ // begin class
     
-}
+    
+    
+    
+    
+    
+    
+    
+    
+} // end class
