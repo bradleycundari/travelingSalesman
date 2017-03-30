@@ -18,10 +18,14 @@ import java.util.Random;
 public class Route 
 {
   private ArrayList<City> currentRoute = new ArrayList<City>();  
-  private int numCities;
   private double fitness;
   private double totalDistance;
-    
+  
+  public Route()
+  {
+  }
+  
+  
  public void addCity(City cityPassed)
  {
    currentRoute.add(cityPassed);
@@ -52,6 +56,12 @@ public void setTotalDistance(double totalDistancePassed)
     this.totalDistance = totalDistancePassed;
 }
 
+public int routeSize()
+{
+    return currentRoute.size();
+}
+
+
 public double getTotalDistance()
 {
     return totalDistance;
@@ -67,16 +77,51 @@ public void setCurrentRoute(ArrayList<City> cityListPassed)
     this.currentRoute = cityListPassed;
 }
 
-public void createRoute (ArrayList<City> cityMap)
+    public double getFitness()
+    {
+        calculateTotalDistance();
+        if (fitness == 0) {
+            fitness = 1/(double)getTotalDistance();
+        }
+        return fitness;
+    }
+
+    public City getCity(int index)
+    {
+    return currentRoute.get(index);
+    }
+    
+    public void setCity(int index, City cityToSet)
+    {
+        currentRoute.set(index, cityToSet);
+        fitness = 0;
+        totalDistance = 0;
+    }
+
+
+    public void createRoute (ArrayList<City> cityMap)
     {
         long seed = 1564534;
+        Random gen = new Random();
         cityMap.forEach((i) -> {
             this.currentRoute.add(i);
         });
-        Collections.shuffle(this.currentRoute, new Random(seed));
+        Collections.shuffle(currentRoute);
          
    }
-
+    
+   public boolean containsCity(City cityToCheck)
+   {
+       return currentRoute.contains(cityToCheck);
+   }
     
 
+   public void display()
+   {
+       currentRoute.forEach((i) -> {
+           System.out.print(i.toString() + " ");
+      });
+   }
+    
+    
 } // end class

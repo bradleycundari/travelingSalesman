@@ -27,17 +27,19 @@ public class Main {
     //This will be the city mapping randomly generated
     ArrayList<City> cityList = new ArrayList();
     cityList = generateRandomCityMap(6);
-    display(cityList);
+    //display(cityList);
 
-    Population pop1 = new Population();
-    Population pop2 = new Population();
-    pop1.createPopulation(cityList,20);
-    pop1.createPopulation(cityList,20);
-    pop1.setTotalDistances();
-    pop2.setTotalDistances();
-    pop1.display();
-    System.out.println();
-    pop2.display();
+    Population pop1 = new Population(cityList,20);
+    Population pop2 = new Population(cityList,20);
+    Genetics gene = new Genetics();
+        
+    //pop1.display();
+    Route test = gene.crossover(pop1.getRoute(0), pop1.getRoute(1),cityList);
+    pop1.getRoute(0).display();
+    System.out.println("");
+    pop2.getRoute(1).display();
+    System.out.println("");
+    test.display();
     }
     
     
@@ -46,6 +48,7 @@ public class Main {
     {//begin generateRoute
     ArrayList<City> tempList = new ArrayList();
     Random rand = new Random();
+    rand.setSeed(1000);
     for (int i = 0; i < size; i++)
     {    
     tempList.add(new City(rand.nextInt(500),rand.nextInt(500)));
@@ -55,10 +58,9 @@ public class Main {
     
     public static void display(ArrayList<City> listPassed)
     {
-        for (City i: listPassed)
-        {
+        listPassed.forEach((i) -> {
             System.out.println(i.toString());
-        }
+        });
     }
     
     

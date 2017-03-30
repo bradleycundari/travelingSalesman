@@ -16,6 +16,16 @@ public class Population
 {
     private ArrayList<Route> currentPopulation = new ArrayList();
 
+    public Population(ArrayList<City> cityMapPassed, int popSize)
+    {        
+        for (int i = 0; i < popSize; i++)
+        {
+            Route a = new Route();
+            a.createRoute(cityMapPassed);
+            currentPopulation.add(a);
+        }      
+    }
+    
     
     
     public void createPopulation(ArrayList<City> cityMapPassed, int size)
@@ -23,28 +33,42 @@ public class Population
         for (int i = 0; i < size; i++)
         {
             Route a = new Route();
-            a.createRoute(cityMapPassed);
+            for (City ii: cityMapPassed)
+            {
+                a.addCity(ii);
+            }
             currentPopulation.add(a);
         }    
         
     }
     
-    public void setTotalDistances()
+    
+    public Route getRoute(int index)
     {
-        for (Route i: currentPopulation)
-        {
-            i.calculateTotalDistance();
-        }
+     return currentPopulation.get(index);   
     }
     
-    
+    public Route getFittest()
+    {
+        Route fittest = currentPopulation.get(0);
+        
+        for (Route i: currentPopulation)
+        {
+            if (fittest.getFitness() <= i.getFitness())
+            {
+            fittest = i;
+            }    
+        }
+        return fittest;
+    }    
     
     
    public void display()
     {
         for (Route i: currentPopulation)
         {
-           System.out.print(i.getTotalDistance());
+           i.display();
+           System.out.println(i.getFitness());           
         }
     }
     
