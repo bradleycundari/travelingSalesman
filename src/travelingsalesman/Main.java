@@ -35,11 +35,13 @@ public class Main {
         
     //pop1.display();
     Route test = gene.crossover(pop1.getRoute(0), pop1.getRoute(1),cityList);
-    pop1.getRoute(0).display();
-    System.out.println("");
-    pop2.getRoute(1).display();
-    System.out.println("");
-    test.display();
+    //System.out.println("Parent 1:");
+    //pop1.getRoute(0).display();
+    //System.out.println("");
+    //System.out.println("Parent 2:");
+    //pop2.getRoute(1).display();
+    //System.out.println("Child:");
+    //test.display();
     }
     
     

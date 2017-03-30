@@ -23,46 +23,57 @@ public class Genetics
     // Applies crossover to a set of parents and creates offspring
     public Route crossover(Route parent1, Route parent2, ArrayList<City> cityMap) 
     {   
-        // Some code was utilized from: 
-        // http://www.theprojectspot.com/tutorial-post/applying-a-genetic-algorithm-to-the-travelling-salesman-problem/5
-        
-        
+
         Route child = new Route();
         child.createRoute(cityMap);
         
+        //Make a blank route
+        for (int z = 0; z < child.routeSize(); z++)
+        {
+            child.setCity(z, null);
+        }
+        
+        
         int startPos = (int) (Math.random() * parent1.routeSize());
         int endPos = (int) (Math.random() * parent1.routeSize());
-
-        //crossover for sub route from parent1
-        for (int i = 0; i < parent1.routeSize(); i++)
+        
+        while (startPos >= endPos)
         {
-            if (startPos < endPos && i > startPos && i < endPos)
+         startPos = (int) (Math.random() * parent1.routeSize());
+         endPos = (int) (Math.random() * parent1.routeSize());    
+        }
+        
+        System.out.println(startPos);
+        System.out.println(endPos);
+
+        //Populate Child with sub route of parent1
+        for (int i = startPos; i < endPos; i++)
+        {
+            child.setCity(i, parent1.getCity(i));
+        }
+        
+
+        // populate Child with remaining subroute of parent 2
+        for (int childIndex = 0; childIndex < child.routeSize(); childIndex++)
+        {
+            if (child.getCity(childIndex) == null && !child.containsCity(parent2.getCity(childIndex)))
             {
-               child.setCity(i, parent1.getCity(i));
+             child.setCity(childIndex, parent2.getCity(childIndex));
             }    
-            else if (startPos > endPos)
+        }
+
+        //populates the child with any missing cities
+        for (City i: cityMap)
+        {
+            for (int index = 0; index < child.routeSize(); index++)
             {
-                if (!(i < startPos && i > endPos)) {
-                    child.setCity(i, parent1.getCity(i));
+                if(child.getCity(index) == null && !child.getCurrentRoute().contains(i))
+                {
+                   child.setCity(index, i);
                 }
             }
         }
-        
-        for (int i = 0; i < parent2.routeSize(); i++) {
-            // If child doesn't have the city add it
-            if (!child.containsCity(parent2.getCity(i))) {
-                // Loop to find a spare position in the child's tour
-                for (int ii = 0; ii < child.routeSize(); ii++) {
-                    // Spare position found, add city
-                    if (child.getCity(ii) == null) {
-                        child.setCity(ii, parent2.getCity(i));
-                        break;
-                    }
-                }
-            }
-        }
-        
-        
+       
         
         return child;
     }    

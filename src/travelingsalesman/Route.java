@@ -112,15 +112,20 @@ public void setCurrentRoute(ArrayList<City> cityListPassed)
     
    public boolean containsCity(City cityToCheck)
    {
-       return currentRoute.contains(cityToCheck);
+       return this.currentRoute.contains(cityToCheck);
    }
     
 
    public void display()
    {
        currentRoute.forEach((i) -> {
-           System.out.print(i.toString() + " ");
+           if(i == null)
+           {
+             System.out.print("|Empty|" + " ");
+           }
+           else System.out.print(i.toString() + " ");
       });
+      System.out.println("");
    }
     
     
