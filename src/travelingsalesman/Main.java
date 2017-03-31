@@ -32,7 +32,6 @@ public class Main {
     Genetics gene = new Genetics();
     Population pop1 = new Population(cityList,20);
     System.out.println("The fittest of initial: " + pop1.getFittest().getTotalDistance());
-    System.out.println("");
     for (int i = 0; i < 20; i++)
     {
         pop1 = gene.evolve(pop1, cityList, pop1.getPopulationSize());
