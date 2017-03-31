@@ -64,6 +64,7 @@ public int routeSize()
 
 public double getTotalDistance()
 {
+    calculateTotalDistance();
     return totalDistance;
 }
 

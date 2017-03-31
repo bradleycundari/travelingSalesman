@@ -26,22 +26,21 @@ public class Main {
     
     //This will be the city mapping randomly generated
     ArrayList<City> cityList = new ArrayList();
-    cityList = generateRandomCityMap(6);
+    cityList = generateRandomCityMap(25);
     //display(cityList);
 
-    Population pop1 = new Population(cityList,20);
-    Population pop2 = new Population(cityList,20);
     Genetics gene = new Genetics();
-        
-    //pop1.display();
-    Route test = gene.crossover(pop1.getRoute(0), pop1.getRoute(1),cityList);
-    //System.out.println("Parent 1:");
-    //pop1.getRoute(0).display();
-    //System.out.println("");
-    //System.out.println("Parent 2:");
-    //pop2.getRoute(1).display();
-    //System.out.println("Child:");
-    //test.display();
+    Population pop1 = new Population(cityList,20);
+    System.out.println("The fittest of initial: " + pop1.getFittest().getTotalDistance());
+    System.out.println("");
+    for (int i = 0; i < 20; i++)
+    {
+        pop1 = gene.evolve(pop1, cityList, pop1.getPopulationSize());
+        System.out.println("The fittest of " + i + " :" + pop1.getFittest().getTotalDistance());
+    }
+    System.out.println("The ending fittest: " + pop1.getFittest().getTotalDistance());
+    
+   
     }
     
     

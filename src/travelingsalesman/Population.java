@@ -26,7 +26,10 @@ public class Population
         }      
     }
     
-    
+    public void setRoute(Route routePassed, int index)
+    {
+        currentPopulation.set(index, routePassed);
+    }
     
     public void createPopulation(ArrayList<City> cityMapPassed, int size)
     {

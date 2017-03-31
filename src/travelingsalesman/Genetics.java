@@ -43,8 +43,6 @@ public class Genetics
          endPos = (int) (Math.random() * parent1.routeSize());    
         }
         
-        System.out.println(startPos);
-        System.out.println(endPos);
 
         //Populate Child with sub route of parent1
         for (int i = startPos; i < endPos; i++)
@@ -79,7 +77,33 @@ public class Genetics
     }    
     
     
-    
+    public Population evolve(Population pop, ArrayList<City> cityMap, int size)
+    {
+        Population newPopulation = new Population(cityMap, size);
+        
+        //Create a new population with new children
+        for (int i = 0; i < pop.getPopulationSize(); i++)
+        {
+            Route parent1 = pop.getRoute(biasedSelection(pop));
+            Route parent2 = pop.getRoute(biasedSelection(pop));
+            
+            Route child = crossover(parent1,parent2,cityMap);
+            newPopulation.setRoute(child, i);
+        }
+        
+        // add mutation to the children
+        for (int i = 0; i < pop.getPopulationSize(); i++)
+        {
+           if (i % 2 == 0)
+           {     
+           mutate(newPopulation.getRoute(i));   
+           }
+        }
+        
+        
+        
+        return newPopulation;
+    }
     
     
     
@@ -98,5 +122,29 @@ public class Genetics
       Collections.swap(toMutate.getCurrentRoute(), rand1, rand2);  
       return toMutate;
     }    
+    
+    
+    public int biasedSelection(Population pop)
+    {
+         //Courtesy of Dr. Wilkins
+         Random rand = new Random();
+         int workingVal = 0;
+         
+         workingVal = Math.abs(rand.nextInt()) % (pop.getPopulationSize() * 15);
+         if (workingVal < (pop.getPopulationSize() * 8))			// First quarter
+		return (workingVal % (pop.getPopulationSize() / 4));
+	else if (workingVal < (pop.getPopulationSize() * 12))	// Second quarter
+		return (workingVal % (pop.getPopulationSize() / 4)) + (pop.getPopulationSize() / 4);
+	else if (workingVal < (pop.getPopulationSize() * 14))	// Third quarter
+		return (workingVal % (pop.getPopulationSize() / 4)) + ((pop.getPopulationSize() / 4) * 2);
+	else										// Last quarter
+	        return (workingVal % (pop.getPopulationSize() / 4)) + ((pop.getPopulationSize() / 4) * 3);
+        
+   
+    }        
+    
+    
+    
+    
     
 } // end class
