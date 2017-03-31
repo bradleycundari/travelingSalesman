@@ -87,7 +87,7 @@ public class Genetics
             //Route parent1 = pop.getRoute(biasedSelection(pop));
             //Route parent2 = pop.getRoute(biasedSelection(pop));
             Route parent1 = pop.getFittest();
-            Route parent2 = pop.getFittest();
+            Route parent2 = pop.getSecondFittest();
             
             Route child = crossover(parent1,parent2,cityMap);
             newPopulation.setRoute(child, i);
@@ -97,10 +97,10 @@ public class Genetics
         for (int i = 0; i < pop.getPopulationSize(); i++)
         {
            // just mutate the even ones to reduce the number
-           if (i % 2 == 0)
-           {     
+           //if (i % 2 == 0)
+           //{     
            mutate(newPopulation.getRoute(i));   
-           }
+           //}
         }
         
         

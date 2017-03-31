@@ -66,6 +66,22 @@ public class Population
     }    
     
     
+    public Route getSecondFittest()
+    {
+        Route fittest = currentPopulation.get(0);
+        Route second = fittest;
+        for (Route i: currentPopulation)
+        {
+            if (fittest.getFitness() <= i.getFitness())
+            {
+            second = fittest;
+            fittest = i;
+            }    
+        }
+        return second;
+    }    
+    
+    
    public void display()
     {
         for (Route i: currentPopulation)

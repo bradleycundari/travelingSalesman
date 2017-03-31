@@ -81,7 +81,10 @@ public void setCurrentRoute(ArrayList<City> cityListPassed)
     public double getFitness()
     {
         calculateTotalDistance();
+        
+        //has it been set?
         if (fitness == 0) {
+            //idea from Lee Jacobson
             fitness = 1/(double)getTotalDistance();
         }
         return fitness;
