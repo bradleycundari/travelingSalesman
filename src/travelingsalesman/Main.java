@@ -5,6 +5,8 @@
  */
 package travelingsalesman;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -22,27 +24,52 @@ public class Main {
     {
     //GUI mainGUI = new GUI();
     //mainGUI.show();
-    
-    
+
+
     //This will be the city mapping randomly generated
     ArrayList<City> cityList = new ArrayList();
     cityList = generateRandomCityMap(25);
+    System.out.println("The map contains 25 cities.");
     //display(cityList);
+    ArrayList<Double> data = new ArrayList();
 
     Genetics gene = new Genetics();
-    Population pop1 = new Population(cityList,20);
+    Population pop1 = new Population(cityList,50);
     System.out.println("The distance of the fittest route of population #1: " + pop1.getFittest().getTotalDistance());
-    for (int i = 0; i < 20; i++)
+    data.add(pop1.getFittest().getTotalDistance()); 
+    for (int z = 0; z < 50; z++)
     {
         pop1 = gene.evolve(pop1, cityList, pop1.getPopulationSize());
-        System.out.println("The distance of the fittest route of population #" + i + ": " + pop1.getFittest().getTotalDistance());
+        System.out.println("The distance of the fittest route of population #" + z + ": " + pop1.getFittest().getTotalDistance());
+        data.add(pop1.getFittest().getTotalDistance()); 
     }
     System.out.println("The distance of the fittest route of population #20: " + pop1.getFittest().getTotalDistance());
+    data.add(pop1.getFittest().getTotalDistance()); 
     
-   
+    for (double j: data)
+    {
+        System.out.println(j);
     }
     
     
+    /*
+    try
+    {
+    PrintWriter writer = new PrintWriter("results.txt", "UTF-8");
+    for (Double q: data)
+    {
+    writer.println(q);   
+    }
+    writer.println("");
+    }
+    catch (IOException e)
+    {    
+        System.out.println(e.getMessage());
+    }
+    */
+    
+    
+    }
     
     public static ArrayList<City> generateRandomCityMap(int size)
     {//begin generateRoute
