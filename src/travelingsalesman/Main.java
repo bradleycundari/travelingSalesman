@@ -31,13 +31,13 @@ public class Main {
 
     Genetics gene = new Genetics();
     Population pop1 = new Population(cityList,20);
-    System.out.println("The fittest of initial: " + pop1.getFittest().getTotalDistance());
+    System.out.println("The fittest route of population #1: " + pop1.getFittest().getTotalDistance());
     for (int i = 0; i < 20; i++)
     {
         pop1 = gene.evolve(pop1, cityList, pop1.getPopulationSize());
-        System.out.println("The fittest of " + i + " :" + pop1.getFittest().getTotalDistance());
+        System.out.println("The fittest route of population #" + i + ": " + pop1.getFittest().getTotalDistance());
     }
-    System.out.println("The ending fittest: " + pop1.getFittest().getTotalDistance());
+    System.out.println("The fittest route of population #20: " + pop1.getFittest().getTotalDistance());
     
    
     }
